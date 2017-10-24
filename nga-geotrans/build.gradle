@@ -5,6 +5,15 @@ apply plugin: 'nebula.maven-base-publish'
 apply plugin: 'nebula.maven-nebula-publish'
 
 android {
+    compileSdkVersion  23
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        versionCode 1
+        versionName "3.0.0"
+        minSdkVersion 19
+        targetSdkVersion   23
+    }
+
     sourceSets {
         main {
             //jni.srcDirs = ['src/main/jni']
@@ -17,6 +26,27 @@ android {
             // Application.mk in the same directory will be used automatically
             path 'src/main/jni/Android.mk'
         }
+    }
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+    maven {
+        url "file://${System.env['ANDROID_HOME']}/extras/android/m2repository"
+    }
+    maven {
+        url 'https://maven.google.com'
+        // Alternative URL is 'https://dl.google.com/dl/android/maven2/'
+    }
+    maven {
+        url 'https://bintray.com/nasaworldwind/maven/WorldWindAndroid/'
+    }
+    maven {
+        url "https://dl.bintray.com/missioncommand/maven/"
+    }
+    maven {
+        url "https://oss.jfrog.org/artifactory/libs-snapshot"
     }
 }
 
